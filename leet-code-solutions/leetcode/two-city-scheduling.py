@@ -1,18 +1,14 @@
 class Solution:
     def twoCitySchedCost(self, costs: List[List[int]]) -> int:
         costs.sort(key = lambda x: -abs(x[0] - x[1]))
-        print(costs)
-    
-
         total = 0
-        B = A = len(costs)/2
-        for acost, bcost in costs:
-            if B == 0 or (A > 0 and acost <= bcost):
-                total += acost
-                A-=1
+        A = B = len(costs)/2
+
+        for i, j in costs:
+            if B == 0 or (A > 0 and i <= j):
+                total += i
+                A -= 1
             else:
-                total += bcost
+                total += j
                 B -= 1
         return total
-        
-        
